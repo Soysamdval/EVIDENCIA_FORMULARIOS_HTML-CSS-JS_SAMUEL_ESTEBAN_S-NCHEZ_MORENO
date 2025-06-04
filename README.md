@@ -32,7 +32,3 @@ Este proyecto es una simulación práctica de un formulario web completo, que in
 - `Comentarios` (textarea)
 - `Términos aceptados` (checkbox)
 
----
-
-## 📂 Estructura de Archivos
-
