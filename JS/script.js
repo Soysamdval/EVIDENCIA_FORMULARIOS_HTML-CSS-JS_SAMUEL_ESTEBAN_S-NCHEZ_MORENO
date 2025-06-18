@@ -5,25 +5,23 @@ document.addEventListener('DOMContentLoaded', function () {
   const progressFill = document.querySelector('.progress-fill');
   const textarea = formulario.querySelector('textarea');
   const contador = document.createElement('div');
+  const botonEnviar = formulario.querySelector('button[type="submit"]');
 
-  // Agregar contador de palabras
+  // 👉 Configurar contador de palabras
   contador.className = 'contador';
   textarea.insertAdjacentElement('afterend', contador);
 
-  // 👉 Actualizar contador de palabras
   function actualizarContador() {
     const texto = textarea.value.trim();
     const palabras = texto === '' ? 0 : texto.split(/\s+/).length;
     contador.textContent = `Palabras: ${palabras}`;
   }
 
-  // 👉 Calcular progreso del formulario
   function calcularProgreso() {
     const campos = Array.from(formulario.elements).filter(
       (el) =>
-        el.tagName === 'INPUT' ||
-        el.tagName === 'SELECT' ||
-        el.tagName === 'TEXTAREA'
+        (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA') &&
+        el.type !== 'submit' && el.name !== ''
     );
 
     let llenos = 0;
@@ -38,9 +36,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const porcentaje = Math.floor((llenos / campos.length) * 100);
     progressFill.style.width = `${porcentaje}%`;
+
+    // Activar o desactivar el botón según el progreso
+    botonEnviar.disabled = porcentaje < 100;
   }
 
-  // 🎯 Manejo del envío
+  // 📝 Validar formulario
+  function validarFormulario() {
+    const campos = Array.from(formulario.elements).filter(
+      (el) =>
+        (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') &&
+        el.type !== 'submit' && el.name !== '' && !el.disabled
+    );
+
+    let formularioValido = campos.every((campo) => {
+      if (campo.type === 'checkbox') return campo.checked;
+      return campo.value.trim() !== '';
+    });
+
+    botonEnviar.disabled = !formularioValido;
+  }
+
+  // 🎯 Manejar envío
   formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
@@ -50,28 +67,13 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let [campo, valor] of datosFormulario.entries()) {
       let nombreCampo = campo;
       switch (campo) {
-        case 'nombre':
-          nombreCampo = 'Nombre completo';
-          break;
-        case 'email':
-          nombreCampo = 'Correo electrónico';
-          break;
-        case 'edad':
-          nombreCampo = 'Edad';
-          break;
-        case 'ciudad':
-          nombreCampo = 'Ciudad';
-          break;
-        case 'experiencia':
-          nombreCampo = 'Experiencia en programación';
-          break;
-        case 'acepto':
-          nombreCampo = 'Términos aceptados';
-          valor = 'Sí ✅';
-          break;
-        case 'comentarios':
-          nombreCampo = 'Comentarios';
-          break;
+        case 'nombre': nombreCampo = 'Nombre completo'; break;
+        case 'email': nombreCampo = 'Correo electrónico'; break;
+        case 'edad': nombreCampo = 'Edad'; break;
+        case 'ciudad': nombreCampo = 'Ciudad'; break;
+        case 'experiencia': nombreCampo = 'Experiencia en programación'; break;
+        case 'acepto': nombreCampo = 'Términos aceptados'; valor = 'Sí ✅'; break;
+        case 'comentarios': nombreCampo = 'Comentarios'; break;
       }
 
       if (valor && valor.trim() !== '') {
@@ -84,19 +86,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     datosEnviados.innerHTML = datosHTML;
     resultado.style.display = 'block';
-
     resultado.scrollIntoView({ behavior: 'smooth' });
 
     alert('✅ Formulario enviado correctamente.\nRevisa los datos más abajo.');
   });
 
-  // 🧹 Botón limpiar
+  // 🧹 Limpiar formulario
   function limpiarFormulario() {
     formulario.reset();
     resultado.style.display = 'none';
     datosEnviados.innerHTML = '';
     progressFill.style.width = '0%';
     contador.textContent = '';
+    botonEnviar.disabled = true;
   }
 
   // Crear botón limpiar
@@ -108,41 +110,23 @@ document.addEventListener('DOMContentLoaded', function () {
   botonLimpiar.onclick = limpiarFormulario;
   document.querySelector('.container').appendChild(botonLimpiar);
 
-  // Eventos de interacción
-  textarea.addEventListener('input', actualizarContador);
-  formulario.addEventListener('input', calcularProgreso);
+  // 🔁 Eventos para activar validaciones y contador
+  textarea.addEventListener('input', () => {
+    actualizarContador();
+    calcularProgreso();
+    validarFormulario();
+  });
+
+  formulario.addEventListener('input', () => {
+    calcularProgreso();
+    validarFormulario();
+  });
+
+  formulario.addEventListener('change', () => {
+    calcularProgreso();
+    validarFormulario();
+  });
+
+  // Inicialización segura
+  botonEnviar.disabled = true;
 });
-const botonEnviar = formulario.querySelector('button[type="submit"]');
-botonEnviar.disabled = true; // 🔒 desactivado al inicio
-
-function validarFormulario() {
-  const campos = Array.from(formulario.elements).filter(
-    (el) =>
-      (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') &&
-      el.type !== 'submit' &&
-      el.name !== '' &&
-      !el.disabled
-  );
-
-  let formularioValido = true;
-
-  for (const campo of campos) {
-    if (campo.type === 'checkbox' && !campo.checked) {
-      formularioValido = false;
-      break;
-    } else if (
-      campo.type !== 'checkbox' &&
-      campo.value.trim() === ''
-    ) {
-      formularioValido = false;
-      break;
-    }
-  }
-
-  // Activar o desactivar botón
-  botonEnviar.disabled = !formularioValido;
-}
-
-// Cada vez que se cambia un campo del formulario
-formulario.addEventListener('input', validarFormulario);
-formulario.addEventListener('change', validarFormulario);
