@@ -1,86 +1,102 @@
+/* 🌿 Estilo Global */
 body {
-    font-family: Arial, sans-serif;
-    max-width: 600px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
-    background: linear-gradient(to right, #f0f4f3, #e6f7f1);
+    background: linear-gradient(135deg, #e0f7fa, #c8e6c9);
     color: #333;
 }
 
 .container {
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     color: #2e7d32;
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 35px;
+    font-size: 32px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: 600;
     color: #444;
+    font-size: 15px;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 2px solid #dddddd;
-    border-radius: 6px;
+    padding: 12px 14px;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
     font-size: 16px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
     border-color: #4caf50;
+    background-color: #f1fdf3;
     outline: none;
-    background-color: #f9fff9;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 90px;
 }
 
 /* Botón */
 button {
     background-color: #4caf50;
     color: white;
-    padding: 14px 30px;
+    padding: 16px 32px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
     width: 100%;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
+    margin-top: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Resultado */
 .resultado {
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 35px;
+    padding: 24px;
     background-color: #e8f5e8;
-    border-radius: 6px;
+    border-radius: 8px;
     border-left: 6px solid #4caf50;
     display: none;
     animation: fadeIn 0.6s ease-in-out;
@@ -92,28 +108,28 @@ button:hover {
 }
 
 .dato {
-    margin-bottom: 10px;
-    padding: 10px;
+    margin-bottom: 12px;
+    padding: 12px;
     background-color: #fdfdfd;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #ddd;
 }
 
 .etiqueta {
     font-weight: bold;
-    color: #19d241;
+    color: #2e7d32;
 }
 
 /* Input file */
 input[type="file"] {
-    padding: 8px;
+    padding: 10px;
     background-color: #f8f8f8;
     cursor: pointer;
 }
 
 /* Input color */
 input[type="color"] {
-    height: 40px;
+    height: 45px;
     padding: 0;
     border: none;
 }
@@ -141,11 +157,11 @@ input[type="range"]::-moz-range-thumb {
 
 /* Barra de progreso */
 .progress-line {
-    height: 6px;
+    height: 8px;
     background-color: #ddd;
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .progress-fill {
@@ -171,23 +187,19 @@ input[type="range"]::-moz-range-thumb {
 /* Responsive */
 @media screen and (max-width: 600px) {
     body {
-        padding: 10px;
+        padding: 15px;
     }
 
     .container {
-        padding: 20px;
+        padding: 25px;
     }
 
     h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     button {
         font-size: 15px;
+        padding: 14px 28px;
     }
-}
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-  opacity: 0.7;
 }
