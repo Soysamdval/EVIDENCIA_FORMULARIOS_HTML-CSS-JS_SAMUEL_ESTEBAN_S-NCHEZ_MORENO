@@ -18,20 +18,22 @@
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
-        <form id="myForm" novalidate>
+        <form id="miFormulario" novalidate>
 
             <!-- Nombre completo -->
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" required aria-required="true" aria-label="Nombre completo"
                     placeholder="Ej: Samuel Esteban Sánchez" pattern="[A-Za-zÁ-Úá-úÄ-Üä-ü\s]{3,50}" autofocus />
+                <div id="mensajeNombre" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Correo electrónico -->
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required aria-required="true" aria-label="Correo electrónico"
-                    placeholder="Ej: ejemplo@correo.com" />
+                <input type="email" id="email" name="email" required aria-required="true"
+                    aria-label="Correo electrónico" placeholder="Ej: ejemplo@correo.com" />
+                <div id="mensajeCorreo" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Edad -->
@@ -39,6 +41,7 @@
                 <label for="edad">Edad:</label>
                 <input type="number" id="edad" name="edad" required aria-required="true" aria-label="Edad"
                     placeholder="Ej: 25" min="18" max="100" />
+                <div id="mensajeEdad" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Teléfono -->
@@ -46,6 +49,7 @@
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" id="telefono" name="telefono" required aria-required="true" aria-label="Teléfono"
                     placeholder="Ej: 300 000 0000" pattern="[0-9\s]{7,15}" />
+                <div id="mensajeTelefono" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Ciudad -->
@@ -59,6 +63,7 @@
                     <option value="barranquilla">Barranquilla</option>
                     <option value="otra">Otra</option>
                 </select>
+                <div id="mensajeCiudad" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Fecha de nacimiento -->
@@ -66,6 +71,7 @@
                 <label for="fechaNacimiento">Fecha de nacimiento:</label>
                 <input type="date" id="fechaNacimiento" name="fechaNacimiento" required aria-required="true"
                     aria-label="Fecha de nacimiento">
+                <div id="mensajeFnacimiento" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Página web personal -->
@@ -73,6 +79,7 @@
                 <label for="web">Página web personal (opcional):</label>
                 <input type="url" id="web" name="web" aria-label="Página web personal"
                     placeholder="https://tusitio.com">
+                <div id="mensajeweb" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Nivel de experiencia -->
@@ -97,17 +104,26 @@
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" required aria-required="true" minlength="6"
                     aria-label="Contraseña" placeholder="Mínimo 6 caracteres">
+                <div id="mensajePassword" class="mensaje"></div> <!-- Mensaje de validación -->
+                <div id="fortaleza" class="mensaje"></div> <!-- Fortaleza para validación de contraseña -->
+            </div>
+
+            <!-- Confirmar contraseña -->
+            <div class="form-group">
+                <label for="confirmarPassword">Confirmar Contraseña:</label>
+                <input type="password" id="confirmarPassword" name="confirmarPassword" required aria-required="true"
+                    minlength="6" aria-label="Confirmar Contraseña" placeholder="Repite la contraseña">
+                <div id="mensajeConfrimPass" class="mensaje"></div> <!-- Mensaje de validación -->
             </div>
 
             <!-- Comentarios -->
             <div class="form-group">
                 <label for="comentarios">Comentarios adicionales:</label>
                 <textarea id="comentarios" name="comentarios" rows="4"
-                    placeholder="Cuéntanos algo más sobre ti (opcional)" aria-label="Comentarios adicionales"></textarea>
+                    placeholder="Cuéntanos algo más sobre ti (opcional)"
+                    aria-label="Comentarios adicionales"></textarea>
             </div>
 
-            <!-- Contador de palabras -->
-            <p>Palabras: <span class="contador" id="contador">0</span></p>
 
             <!-- Acepto términos -->
             <div class="form-group">
