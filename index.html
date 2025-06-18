@@ -13,44 +13,46 @@
     <div class="container">
         <h1>📝 ¡Formulario de Registro!</h1>
 
-        <!-- Línea de progreso en cuanto mejore en js la colocaré así como el profe -->
-        <div class="progress-line">
+        <!-- Línea de progreso (Próximamente con JS) -->
+        <div class="progress-line" aria-label="Progreso del formulario">
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
-        <form id="myForm">
+        <form id="myForm" novalidate>
 
             <!-- Nombre completo -->
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Escribe tu nombre completo"
-                    pattern="[A-Za-zá-úÄ-Ü ]{3,50}" autofocus />
+                <input type="text" id="nombre" name="nombre" required aria-required="true" aria-label="Nombre completo"
+                    placeholder="Ej: Samuel Esteban Sánchez" pattern="[A-Za-zÁ-Úá-úÄ-Üä-ü\s]{3,50}" autofocus />
             </div>
 
             <!-- Correo electrónico -->
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" pattern="[A-Za-zá-úÄ-Ü]{3,50}"/>
+                <input type="email" id="email" name="email" required aria-required="true" aria-label="Correo electrónico"
+                    placeholder="Ej: ejemplo@correo.com" />
             </div>
 
             <!-- Edad -->
             <div class="form-group">
                 <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" min="18" max="100" required placeholder="Tu edad" />
+                <input type="number" id="edad" name="edad" required aria-required="true" aria-label="Edad"
+                    placeholder="Ej: 25" min="18" max="100" />
             </div>
 
             <!-- Teléfono -->
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="300 000 0000" pattern="[0-9\s]{7,15}"
-                    required />
+                <input type="tel" id="telefono" name="telefono" required aria-required="true" aria-label="Teléfono"
+                    placeholder="Ej: 300 000 0000" pattern="[0-9\s]{7,15}" />
             </div>
 
             <!-- Ciudad -->
             <div class="form-group">
                 <label for="ciudad">Ciudad:</label>
-                <select id="ciudad" name="ciudad" required>
-                    <option value="">Selecciona tu ciudad</option>
+                <select id="ciudad" name="ciudad" required aria-required="true" aria-label="Ciudad">
+                    <option value="" disabled selected>Selecciona tu ciudad</option>
                     <option value="bogota">Bogotá</option>
                     <option value="medellin">Medellín</option>
                     <option value="cali">Cali</option>
@@ -62,44 +64,46 @@
             <!-- Fecha de nacimiento -->
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required aria-required="true"
+                    aria-label="Fecha de nacimiento">
             </div>
 
             <!-- Página web personal -->
             <div class="form-group">
                 <label for="web">Página web personal (opcional):</label>
-                <input type="url" id="web" name="web" placeholder="https://tusitio.com">
+                <input type="url" id="web" name="web" aria-label="Página web personal"
+                    placeholder="https://tusitio.com">
             </div>
 
             <!-- Nivel de experiencia -->
-            <div class="form-group">
-                <label>Experiencia en programación:</label>
+            <fieldset class="form-group">
+                <legend>Experiencia en programación:</legend>
                 <label><input type="radio" name="experiencia" value="principiante" required> Principiante</label><br>
                 <label><input type="radio" name="experiencia" value="intermedio"> Intermedio</label><br>
                 <label><input type="radio" name="experiencia" value="avanzado"> Avanzado</label>
-            </div>
+            </fieldset>
 
             <!-- Áreas de interés -->
-            <div class="form-group">
-                <label>Áreas de interés:</label>
+            <fieldset class="form-group">
+                <legend>Áreas de interés:</legend>
                 <label><input type="checkbox" name="interes" value="frontend"> Frontend</label>
                 <label><input type="checkbox" name="interes" value="backend"> Backend</label>
                 <label><input type="checkbox" name="interes" value="data"> Data Science</label>
                 <label><input type="checkbox" name="interes" value="seguridad"> Ciberseguridad</label>
-            </div>
+            </fieldset>
 
             <!-- Contraseña -->
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required minlength="6"
-                    placeholder="Mínimo 6 caracteres">
+                <input type="password" id="password" name="password" required aria-required="true" minlength="6"
+                    aria-label="Contraseña" placeholder="Mínimo 6 caracteres">
             </div>
 
             <!-- Comentarios -->
             <div class="form-group">
                 <label for="comentarios">Comentarios adicionales:</label>
                 <textarea id="comentarios" name="comentarios" rows="4"
-                    placeholder="Cuéntanos algo más sobre ti (opcional)"></textarea>
+                    placeholder="Cuéntanos algo más sobre ti (opcional)" aria-label="Comentarios adicionales"></textarea>
             </div>
 
             <!-- Contador de palabras -->
@@ -107,12 +111,12 @@
 
             <!-- Acepto términos -->
             <div class="form-group">
-                <label><input type="checkbox" id="acepto" name="acepto" required> Acepto los términos y
-                    condiciones</label>
+                <label><input type="checkbox" id="acepto" name="acepto" required aria-required="true"> Acepto los
+                    términos y condiciones</label>
             </div>
 
             <!-- Botón de envío -->
-            <button type="submit">🚀 Enviar Formulario</button>
+            <button type="submit" aria-label="Enviar Formulario">🚀 Enviar Formulario</button>
         </form>
 
         <!-- Resultado -->
